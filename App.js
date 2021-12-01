@@ -5,14 +5,17 @@
 
 import React from 'react';
 
-import {SafeAreaView, Text, View, StyleSheet} from 'react-native';
+import {SafeAreaView, Text, View, Image, StyleSheet} from 'react-native';
 import {NativeBaseProvider, Box} from 'native-base';
+
+// Screens
+import SignIn from './src/screens/SignIn';
 
 const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       <NativeBaseProvider>
-        <Box>Hello world</Box>
+        <SignIn />
       </NativeBaseProvider>
     </SafeAreaView>
   );

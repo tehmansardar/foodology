@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   btnBottom: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginLeft: 5,
   },
   line: {
     width: 100,

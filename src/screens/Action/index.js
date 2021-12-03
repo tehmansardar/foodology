@@ -5,31 +5,38 @@ import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import styles from './styles';
-import {style} from 'dom-helpers';
+import {Logo, Button} from '../../components';
 
-const SignIn = () => {
+import styles from './styles';
+
+const Action = () => {
   return (
     <View>
       <View style={styles.container}>
         {/* Logo */}
-        <Image source={Images.Logo} style={styles.logo} />
+        <Logo src={Images.Logo} width={200} height={200} mode={'contain'} />
 
         {/* Sign in */}
-        <Pressable
-          style={styles.signInBtn}
-          android_ripple={{color: '#FFF', radius: 80, foreground: false}}>
-          <Text style={styles.signInText}>Sign in</Text>
-        </Pressable>
+        <Button
+          center
+          middle
+          w={150}
+          h={70}
+          radius={10}
+          bg={Colors.primary}
+          addstyle={{marginTop: 50}}
+          onPress={() => console.warn('Sign In')}>
+          <Text style={styles.signInText}>Sign In</Text>
+        </Button>
 
         {/* Register */}
-        <Pressable
-          style={styles.registerBtn}
-          android_ripple={{
-            color: Colors.secondary,
-            radius: 80,
-            foreground: true,
-          }}>
+        <Button
+          center
+          middle
+          radius={50}
+          // bg={Colors.primary}
+          addstyle={{marginTop: 50, paddingHorizontal: 12}}
+          onPress={() => console.warn('Register')}>
           <Text style={styles.registerText}>Register Today!</Text>
           <View style={styles.btnBottom}>
             <View style={styles.line}></View>
@@ -40,10 +47,10 @@ const SignIn = () => {
               style={styles.icon}
             />
           </View>
-        </Pressable>
+        </Button>
       </View>
     </View>
   );
 };
 
-export default SignIn;
+export default Action;

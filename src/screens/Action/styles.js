@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   signInText: {
-    fontFamily: 'Nexa-Trial-Regular',
+    fontFamily: Fonts.NexaBold,
     fontSize: 20,
     color: Colors.white,
   },
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   registerText: {
-    fontFamily: Fonts.Regular,
+    fontFamily: Fonts.NexaRegular,
     fontSize: 16,
     color: Colors.primary,
   },

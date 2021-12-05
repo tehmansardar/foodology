@@ -7,11 +7,13 @@ const styles = StyleSheet.create({
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
     flex: 1,
   },
   container: {
     width: width - 50,
     height: height - 50,
+    justifyContent: 'center',
   },
 });
 

@@ -9,14 +9,14 @@ import {SafeAreaView, Text, View, Image, StyleSheet} from 'react-native';
 import {NativeBaseProvider, Box} from 'native-base';
 
 // Screens
-import Action from './src/screens/Action';
-// import SignIn from './src/screens/SignIn';
+// import Action from './src/screens/Action';
+import SignIn from './src/screens/SignIn';
 
 const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* <NativeBaseProvider> */}
-      <Action />
+      <SignIn />
       {/* </NativeBaseProvider> */}
     </SafeAreaView>
   );

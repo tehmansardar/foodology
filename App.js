@@ -10,7 +10,7 @@ import {NativeBaseProvider, Box} from 'native-base';
 
 // Screens
 import Action from './src/screens/Action';
-// import Testing from './src/screens/Testing';
+// import SignIn from './src/screens/SignIn';
 
 const App: () => Node = () => {
   return (

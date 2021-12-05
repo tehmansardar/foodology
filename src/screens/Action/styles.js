@@ -26,9 +26,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   signInText: {
-    fontFamily: Fonts.Regular,
+    fontFamily: 'Nexa-Trial-Regular',
     fontSize: 20,
-    fontWeight: '700',
     color: Colors.white,
   },
   registerBtn: {

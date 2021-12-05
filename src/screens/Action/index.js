@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, Pressable, Text, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';

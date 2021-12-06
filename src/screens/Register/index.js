@@ -1,30 +1,30 @@
-import {color} from 'native-base/lib/typescript/theme/styled-system';
 import React from 'react';
 import {View, TextInput} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
-const SignIn = () => {
+const Register = () => {
   return (
     <View style={styles.wrapper}>
       <View
         style={{
-          width: 100,
-          height: 100,
+          width: 150,
+          height: 150,
           borderRadius: 10000,
           position: 'absolute',
-          backgroundColor: Colors.orange,
-          top: -20,
-          right: -20,
+          backgroundColor: Colors.blue,
+          top: -30,
+          right: -30,
         }}
       />
       <View
@@ -33,7 +33,7 @@ const SignIn = () => {
           height: 100,
           borderRadius: 10000,
           position: 'absolute',
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.orange,
           left: -50,
           bottom: 90,
         }}
@@ -51,7 +51,7 @@ const SignIn = () => {
           color={Colors.primary}
           family={Fonts.NexaExtraBold}
           mt={15}>
-          Sign In
+          Register
         </Typography>
 
         <Typography
@@ -59,10 +59,10 @@ const SignIn = () => {
           color={Colors.tertiary}
           family={Fonts.NexaBold}
           mt={15}>
-          Please sign in to continue
+          Sign up and start tracking
         </Typography>
 
-        {/* Email Address */}
+        {/* Username */}
         <View style={{marginTop: 30}}>
           <Typography
             size={22}
@@ -77,7 +77,7 @@ const SignIn = () => {
               autoCorrect={false}
               spellCheck={false}
               autoCorrect={false}
-              keyboardType="email-address"
+              keyboardType="default"
               underlineColorAndroid="transparent"
               placeholder="Enter Username"
               placeholderTextColor={Colors.inputLabel}
@@ -85,6 +85,32 @@ const SignIn = () => {
               style={styles.inputStyles}
             />
             <FontAwesome5 name="user-alt" size={20} color={Colors.primary} />
+          </View>
+        </View>
+
+        {/* Email */}
+        <View style={{marginTop: 30}}>
+          <Typography
+            size={22}
+            mb={15}
+            color={Colors.lightgrey}
+            family={Fonts.NexaLight}>
+            Email
+          </Typography>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              autoCapitalize="none"
+              autoCorrect={false}
+              spellCheck={false}
+              autoCorrect={false}
+              keyboardType="email-address"
+              underlineColorAndroid="transparent"
+              placeholder="Enter Email Address"
+              placeholderTextColor={Colors.inputLabel}
+              selectionColor={Colors.inputLabel}
+              style={styles.inputStyles}
+            />
+            <FontAwesome name="envelope" size={20} color={Colors.primary} />
           </View>
         </View>
         {/* Password */}
@@ -114,49 +140,33 @@ const SignIn = () => {
             />
           </View>
         </View>
-        {/* Forgot Password */}
-        <View style={{alignItems: 'flex-end'}}>
-          <Typography
-            size={16}
-            mt={15}
-            color={Colors.primary}
-            family={Fonts.NexaRegular}
-            onPress={() => console.warn('Forogot')}>
-            Forgot Password?
-          </Typography>
-        </View>
+
         {/* Button */}
-        <View style={{alignItems: 'flex-end'}}>
-          <LinearGradient
-            style={{borderRadius: 10, marginTop: 25}}
-            colors={[Colors.blue, Colors.red]}
-            start={{y: 0.0, x: 0.0}}
-            end={{y: 0.0, x: 1.0}}>
-            <Button
-              center
-              middle
-              w={150}
-              h={70}
-              radius={10}
-              // bg={Colors.primary}
-              onPress={() => console.warn('Sign In')}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Typography
-                  size={20}
-                  color={Colors.white}
-                  family={Fonts.NexaBold}
-                  onPress={() => console.warn('Forogot')}>
-                  Sign In
-                </Typography>
-                {/* <AntDesign
-                  name="arrowright"
-                  size={50}
-                  color={Colors.white}
-                  // style={{opacity: 0.2}}
-                /> */}
-              </View>
-            </Button>
-          </LinearGradient>
+        <View style={{alignItems: 'flex-end', marginTop: 40}}>
+          <Button
+            center
+            middle
+            w={120}
+            h={50}
+            radius={10}
+            bg={Colors.primary}
+            onPress={() => console.warn('Sign In')}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Typography
+                size={20}
+                color={Colors.white}
+                family={Fonts.NexaBold}
+                onPress={() => console.warn('Forogot')}>
+                Next
+              </Typography>
+              <Feather name="chevron-right" size={25} color={Colors.white} />
+            </View>
+          </Button>
         </View>
 
         <View style={{alignItems: 'center', marginTop: 50}}>
@@ -164,13 +174,13 @@ const SignIn = () => {
             size={16}
             color={Colors.primary}
             family={Fonts.NexaRegular}>
-            Not a member yet?{' '}
+            Already a member?{' '}
             <Typography
               size={18}
               color={Colors.red}
               family={Fonts.NexaExtraBold}
               onPress={() => console.warn('Forogot')}>
-              Sign Up
+              Sign In
             </Typography>
           </Typography>
         </View>
@@ -179,4 +189,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Register;

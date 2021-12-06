@@ -10,13 +10,15 @@ import {NativeBaseProvider, Box} from 'native-base';
 
 // Screens
 // import Action from './src/screens/Action';
-import SignIn from './src/screens/SignIn';
+// import SignIn from './src/screens/SignIn';
+// import Register from './src/screens/Register';
+import HeightWeight from './src/screens/HeightWeight';
 
 const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* <NativeBaseProvider> */}
-      <SignIn />
+      <HeightWeight />
       {/* </NativeBaseProvider> */}
     </SafeAreaView>
   );

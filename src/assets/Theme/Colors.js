@@ -9,5 +9,6 @@ const Colors = {
   red: '#D8190F',
   orange: '#F16422',
   blue: '#0054A5',
+  transparent: 'transparent',
 };
 export default Colors;

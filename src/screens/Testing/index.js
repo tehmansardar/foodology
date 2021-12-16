@@ -1,16 +1,83 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView, ScrollView} from 'react-native';
 
 import Block from '../../components/Block';
 
 const Testing = () => {
   return (
     <View>
-      <Block center middle>
+      <ScrollView
+        style={{flexGrow: 1}}
+        alwaysBounceHorizontal={false}
+        alwaysBounceVertical={false}
+        bounces={false}>
         <Block center middle>
-          <Text style={{color: '#000'}}>Testing</Text>
+          <Block center middle>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+            <Text style={{color: '#000'}}>Testing</Text>
+          </Block>
         </Block>
-      </Block>
+      </ScrollView>
     </View>
   );
 };

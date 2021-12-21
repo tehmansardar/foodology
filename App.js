@@ -5,14 +5,7 @@
 
 import React from 'react';
 
-import {
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 // Screens
 // import Action from './src/screens/Action';
@@ -23,14 +16,18 @@ import {
 // import Sex from './src/screens/Sex';
 // import Ethnicity from './src/screens/Ethnicity';
 // import MaritalStatus from './src/screens/MaritalStatus';
-import Children from './src/screens/Children';
+// import Children from './src/screens/Children';
+// import Home from './src/screens/Home';
+// import Profile from './src/screens/Profile';
+import Analytics from './src/screens/Analytics';
+import Suggestions from './src/screens/Suggestions';
 // import Testing from './src/screens/Testing';
 
 const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* <NativeBaseProvider> */}
-      <Children />
+      <Analytics />
       {/* </NativeBaseProvider> */}
     </SafeAreaView>
   );

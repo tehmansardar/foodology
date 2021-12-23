@@ -3,17 +3,19 @@ import {View, TextInput, TouchableOpacity} from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
+
+import {useNavigation} from '@react-navigation/native';
+
 const HeightWeight = () => {
+  const navigation = useNavigation();
+
   const heightFocus = useRef(null);
   const weightFocus = useRef(null);
 
@@ -216,7 +218,7 @@ const HeightWeight = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => console.warn('Sign In')}>
+            onPress={() => navigation.navigate('Age')}>
             <View
               style={{
                 flexDirection: 'row',
@@ -226,8 +228,7 @@ const HeightWeight = () => {
               <Typography
                 size={20}
                 color={Colors.white}
-                family={Fonts.NexaBold}
-                onPress={() => console.warn('Forogot')}>
+                family={Fonts.NexaBold}>
                 Next
               </Typography>
               <Feather name="chevron-right" size={25} color={Colors.white} />

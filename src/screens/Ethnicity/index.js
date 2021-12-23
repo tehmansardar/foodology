@@ -12,7 +12,11 @@ import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
 
+import {useNavigation} from '@react-navigation/native';
+
 const Ethnicity = () => {
+  const navigation = useNavigation();
+
   const [open, setOpen] = useState(false);
 
   const [value, setValue] = useState('');
@@ -123,7 +127,7 @@ const Ethnicity = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => console.warn('Sign In')}>
+            onPress={() => navigation.navigate('MaritalStatus')}>
             <View
               style={{
                 flexDirection: 'row',
@@ -133,8 +137,7 @@ const Ethnicity = () => {
               <Typography
                 size={20}
                 color={Colors.white}
-                family={Fonts.NexaBold}
-                onPress={() => console.warn('Forogot')}>
+                family={Fonts.NexaBold}>
                 Next
               </Typography>
               <Feather name="chevron-right" size={25} color={Colors.white} />

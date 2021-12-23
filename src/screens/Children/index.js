@@ -16,7 +16,12 @@ import {Logo, Button, Typography} from '../../components';
 import ChildAge from '../../components/ChildAge';
 
 import styles from './styles';
+
+import {useNavigation} from '@react-navigation/native';
+
 const Children = () => {
+  const navigation = useNavigation();
+
   const [count, setCount] = useState('0');
 
   const heightFocus = useRef(null);
@@ -126,7 +131,7 @@ const Children = () => {
               h={50}
               radius={10}
               bg={Colors.primary}
-              onPress={() => console.warn('Sign In')}>
+              onPress={() => navigation.navigate('HomeScreen')}>
               <View
                 style={{
                   flexDirection: 'row',
@@ -136,11 +141,9 @@ const Children = () => {
                 <Typography
                   size={20}
                   color={Colors.white}
-                  family={Fonts.NexaBold}
-                  onPress={() => console.warn('Forogot')}>
-                  Next
+                  family={Fonts.NexaBold}>
+                  Sign Up
                 </Typography>
-                <Feather name="chevron-right" size={25} color={Colors.white} />
               </View>
             </Button>
           </View>

@@ -6,14 +6,18 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
+
+import {useNavigation} from '@react-navigation/native';
+
 const SignIn = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.wrapper}>
       <View
@@ -139,13 +143,12 @@ const SignIn = () => {
               h={70}
               radius={10}
               // bg={Colors.primary}
-              onPress={() => console.warn('Sign In')}>
+              onPress={() => navigation.navigate('HomeScreen')}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Typography
                   size={20}
                   color={Colors.white}
-                  family={Fonts.NexaBold}
-                  onPress={() => console.warn('Forogot')}>
+                  family={Fonts.NexaBold}>
                   Sign In
                 </Typography>
                 {/* <AntDesign
@@ -169,7 +172,7 @@ const SignIn = () => {
               size={18}
               color={Colors.red}
               family={Fonts.NexaExtraBold}
-              onPress={() => console.warn('Forogot')}>
+              onPress={() => navigation.navigate('Register')}>
               Sign Up
             </Typography>
           </Typography>

@@ -1,6 +1,6 @@
 const Colors = {
   primary: '#1D1D1D',
-  secondary: '#f3f3f3',
+  secondary: '#e2e2e2',
   tertiary: '#8F8F8F',
   lightgrey: '#929292',
   inputLabel: '#BABABA',

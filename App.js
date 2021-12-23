@@ -2,7 +2,7 @@
  * @format
  * @flow strict-local
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 
 import {SafeAreaView, StyleSheet} from 'react-native';
@@ -19,15 +19,17 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 // import Children from './src/screens/Children';
 // import Home from './src/screens/Home';
 // import Profile from './src/screens/Profile';
-import Analytics from './src/screens/Analytics';
-import Suggestions from './src/screens/Suggestions';
+// import Analytics from './src/screens/Analytics';
+// import Suggestions from './src/screens/Suggestions';
 // import Testing from './src/screens/Testing';
+
+import Router from './src/navigation/Router';
 
 const App: () => Node = () => {
   return (
     <SafeAreaView style={styles.container}>
       {/* <NativeBaseProvider> */}
-      <Analytics />
+      <Router />
       {/* </NativeBaseProvider> */}
     </SafeAreaView>
   );

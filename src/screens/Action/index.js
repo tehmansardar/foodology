@@ -9,7 +9,11 @@ import {Logo, Button} from '../../components';
 
 import styles from './styles';
 
+import {useNavigation} from '@react-navigation/native';
+
 const Action = () => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <View style={styles.container}>
@@ -25,7 +29,7 @@ const Action = () => {
           radius={10}
           bg={Colors.primary}
           addstyle={{marginTop: 50}}
-          onPress={() => console.warn('Sign In')}>
+          onPress={() => navigation.navigate('SignIn')}>
           <Text style={styles.signInText}>Sign In</Text>
         </Button>
 
@@ -36,7 +40,7 @@ const Action = () => {
           radius={50}
           // bg={Colors.primary}
           addstyle={{marginTop: 50, paddingHorizontal: 12}}
-          onPress={() => console.warn('Register')}>
+          onPress={() => navigation.navigate('Register')}>
           <Text style={styles.registerText}>Register Today!</Text>
           <View style={styles.btnBottom}>
             <View style={styles.line}></View>

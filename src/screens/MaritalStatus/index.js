@@ -12,7 +12,11 @@ import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
 
+import {useNavigation} from '@react-navigation/native';
+
 const MaritalStatus = () => {
+  const navigation = useNavigation();
+
   const [open, setOpen] = useState(false);
 
   const [value, setValue] = useState('');
@@ -120,7 +124,7 @@ const MaritalStatus = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => console.warn('Sign In')}>
+            onPress={() => navigation.navigate('Children')}>
             <View
               style={{
                 flexDirection: 'row',
@@ -130,8 +134,7 @@ const MaritalStatus = () => {
               <Typography
                 size={20}
                 color={Colors.white}
-                family={Fonts.NexaBold}
-                onPress={() => console.warn('Forogot')}>
+                family={Fonts.NexaBold}>
                 Next
               </Typography>
               <Feather name="chevron-right" size={25} color={Colors.white} />

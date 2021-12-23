@@ -13,7 +13,12 @@ import {Fonts, Colors, Images} from '../../assets/Theme';
 import {Logo, Button, Typography} from '../../components';
 
 import styles from './styles';
+
+import {useNavigation} from '@react-navigation/native';
+
 const Register = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.wrapper}>
       <View
@@ -150,7 +155,7 @@ const Register = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => console.warn('Sign In')}>
+            onPress={() => navigation.navigate('HeightWeight')}>
             <View
               style={{
                 flexDirection: 'row',
@@ -160,8 +165,7 @@ const Register = () => {
               <Typography
                 size={20}
                 color={Colors.white}
-                family={Fonts.NexaBold}
-                onPress={() => console.warn('Forogot')}>
+                family={Fonts.NexaBold}>
                 Next
               </Typography>
               <Feather name="chevron-right" size={25} color={Colors.white} />
@@ -179,7 +183,7 @@ const Register = () => {
               size={18}
               color={Colors.red}
               family={Fonts.NexaExtraBold}
-              onPress={() => console.warn('Forogot')}>
+              onPress={() => navigation.navigate('SignIn')}>
               Sign In
             </Typography>
           </Typography>

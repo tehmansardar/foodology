@@ -89,7 +89,6 @@ const Children = () => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   spellCheck={false}
-                  autoCorrect={false}
                   keyboardType="numeric"
                   underlineColorAndroid="transparent"
                   value={count}

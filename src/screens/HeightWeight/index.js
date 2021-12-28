@@ -100,7 +100,6 @@ const HeightWeight = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 spellCheck={false}
-                autoCorrect={false}
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
                 selectionColor={Colors.primary}
@@ -163,7 +162,6 @@ const HeightWeight = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 spellCheck={false}
-                autoCorrect={false}
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
                 selectionColor={Colors.primary}

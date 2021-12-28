@@ -36,7 +36,6 @@ const Sleeping = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
             placeholder="1"

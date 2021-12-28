@@ -77,7 +77,6 @@ const Eating = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="default"
             underlineColorAndroid="transparent"
             placeholder="Or enter a custom name..."
@@ -103,7 +102,6 @@ const Eating = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
             placeholder="Hrs"
@@ -118,7 +116,6 @@ const Eating = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
             placeholder="Min"

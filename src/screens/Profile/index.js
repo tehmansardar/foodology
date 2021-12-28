@@ -94,7 +94,6 @@ const Profile = () => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   spellCheck={false}
-                  autoCorrect={false}
                   keyboardType="default"
                   underlineColorAndroid="transparent"
                   placeholder="Enter Username"
@@ -119,7 +118,6 @@ const Profile = () => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   spellCheck={false}
-                  autoCorrect={false}
                   keyboardType="email-address"
                   underlineColorAndroid="transparent"
                   placeholder="Enter Email Address"
@@ -167,7 +165,6 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     spellCheck={false}
-                    autoCorrect={false}
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     selectionColor={Colors.primary}
@@ -226,7 +223,6 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     spellCheck={false}
-                    autoCorrect={false}
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     selectionColor={Colors.primary}
@@ -285,7 +281,6 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     spellCheck={false}
-                    autoCorrect={false}
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     placeholder="DD"
@@ -299,7 +294,6 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     spellCheck={false}
-                    autoCorrect={false}
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     placeholder="MM"
@@ -317,7 +311,6 @@ const Profile = () => {
                     autoCapitalize="none"
                     autoCorrect={false}
                     spellCheck={false}
-                    autoCorrect={false}
                     keyboardType="numeric"
                     underlineColorAndroid="transparent"
                     placeholder="YYYY"
@@ -480,7 +473,6 @@ const Profile = () => {
                   autoCapitalize="none"
                   autoCorrect={false}
                   spellCheck={false}
-                  autoCorrect={false}
                   keyboardType="default"
                   underlineColorAndroid="transparent"
                   placeholder="Enter Username"

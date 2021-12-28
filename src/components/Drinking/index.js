@@ -84,7 +84,6 @@ const Drinking = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="default"
             underlineColorAndroid="transparent"
             placeholder="Or enter a custom name..."
@@ -110,7 +109,6 @@ const Drinking = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
             placeholder="Hrs"
@@ -125,7 +123,6 @@ const Drinking = () => {
             autoCapitalize="none"
             autoCorrect={false}
             spellCheck={false}
-            autoCorrect={false}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
             placeholder="Min"

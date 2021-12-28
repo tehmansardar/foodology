@@ -103,7 +103,6 @@ const Age = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 spellCheck={false}
-                autoCorrect={false}
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
                 placeholder="DD"
@@ -120,7 +119,6 @@ const Age = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 spellCheck={false}
-                autoCorrect={false}
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
                 placeholder="MM"
@@ -140,7 +138,6 @@ const Age = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 spellCheck={false}
-                autoCorrect={false}
                 keyboardType="numeric"
                 underlineColorAndroid="transparent"
                 placeholder="YYYY"

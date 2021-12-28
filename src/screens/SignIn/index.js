@@ -80,7 +80,6 @@ const SignIn = () => {
               autoCapitalize="none"
               autoCorrect={false}
               spellCheck={false}
-              autoCorrect={false}
               keyboardType="email-address"
               underlineColorAndroid="transparent"
               placeholder="Enter Username"

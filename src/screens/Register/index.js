@@ -81,7 +81,6 @@ const Register = () => {
               autoCapitalize="none"
               autoCorrect={false}
               spellCheck={false}
-              autoCorrect={false}
               keyboardType="default"
               underlineColorAndroid="transparent"
               placeholder="Enter Username"
@@ -107,7 +106,6 @@ const Register = () => {
               autoCapitalize="none"
               autoCorrect={false}
               spellCheck={false}
-              autoCorrect={false}
               keyboardType="email-address"
               underlineColorAndroid="transparent"
               placeholder="Enter Email Address"

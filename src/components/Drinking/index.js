@@ -1,15 +1,8 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {View, Image, FlatList, TouchableOpacity, TextInput} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Fonts, Colors, Images} from '../../assets/Theme';
-import {Logo, Button, Typography} from '../../components';
+import {Button, Typography} from '../../components';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Item from '../Item';

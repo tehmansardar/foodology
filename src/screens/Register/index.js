@@ -1,8 +1,6 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
 
-import LinearGradient from 'react-native-linear-gradient';
-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
@@ -12,12 +10,18 @@ import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
+import Alert from '../../components/Alert';
+
 import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useSelector} from 'react-redux';
+
 const Register = () => {
   const navigation = useNavigation();
+
+  const alert = useSelector(state => state.alertReducer.show);
 
   return (
     <View style={styles.wrapper}>
@@ -187,6 +191,7 @@ const Register = () => {
           </Typography>
         </View>
       </View>
+      {alert && <Alert msg="Username already exists" color={Colors.red} />}
     </View>
   );
 };

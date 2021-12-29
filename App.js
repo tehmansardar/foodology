@@ -7,6 +7,10 @@ import React from 'react';
 
 import {SafeAreaView, StyleSheet} from 'react-native';
 
+import {Provider} from 'react-redux';
+
+import {Store} from './src/redux/index';
+
 // Screens
 // import Action from './src/screens/Action';
 // import SignIn from './src/screens/SignIn';
@@ -27,11 +31,13 @@ import Router from './src/navigation/Router';
 
 const App: () => Node = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      {/* <NativeBaseProvider> */}
-      <Router />
-      {/* </NativeBaseProvider> */}
-    </SafeAreaView>
+    <Provider store={Store}>
+      <SafeAreaView style={styles.container}>
+        {/* <NativeBaseProvider> */}
+        <Router />
+        {/* </NativeBaseProvider> */}
+      </SafeAreaView>
+    </Provider>
   );
 };
 

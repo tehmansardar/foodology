@@ -1,6 +1,7 @@
 const ACTIONS = {
   ALERT: 'ALERT',
   ALERT_CLOSE: 'ALERT_CLOSE',
+  USER_EMAIL_PASS: 'USER_EMAIL_PASS',
 };
 
 export default ACTIONS;

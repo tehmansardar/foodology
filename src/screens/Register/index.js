@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, TextInput} from 'react-native';
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -16,12 +16,114 @@ import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  dispatchAlert,
+  dispatchAlertClose,
+} from '../../redux/actions/alertActions';
+import {dispatchUsermailPass} from '../../redux/actions/authActions';
+
+import {isEmpty, isUsername, isEmail, isLength} from '../../utils/validation';
+
+import axios from '../../../axios';
+
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  err: '',
+  success: '',
+  alertColor: '',
+};
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
 
+  const [user, setUser] = useState(initialState);
+  const {username, email, password, err, success, alertColor} = user;
+
+  // Error
   const alert = useSelector(state => state.alertReducer.show);
+  const state = useSelector(state => state.authReducer);
+
+  console.log(state);
+
+  const handleChange = (text, prop) => {
+    dispatch(dispatchAlertClose());
+    setUser({...user, [prop]: text, err: '', success: ''});
+  };
+
+  const onNextHandle = async () => {
+    if (isEmpty(username) || isEmpty(email) || isEmpty(password)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Please fill in all fields',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+    if (!isUsername(username)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Invalid username',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    if (!isEmail(email)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Invalid email',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    if (isLength(password)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Password must be atleast 6 characters',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    try {
+      const res = await axios.post('/user/signup-username-email', {
+        username,
+        email,
+        password,
+      });
+
+      if (res.data.msg) {
+        setUser({
+          ...user,
+          alertColor: Colors.primary,
+          err: '',
+          success: res.data.msg,
+        });
+        dispatch(dispatchUsermailPass({username, email, password}));
+        navigation.navigate('HeightWeight');
+      } else {
+        setUser({
+          ...user,
+          alertColor: Colors.red,
+          err: res.data.err,
+          success: '',
+        });
+        return dispatch(dispatchAlert());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -91,6 +193,7 @@ const Register = () => {
               placeholderTextColor={Colors.inputLabel}
               selectionColor={Colors.inputLabel}
               style={styles.inputStyles}
+              onChangeText={text => handleChange(text, 'username')}
             />
             <FontAwesome5 name="user-alt" size={20} color={Colors.primary} />
           </View>
@@ -116,6 +219,7 @@ const Register = () => {
               placeholderTextColor={Colors.inputLabel}
               selectionColor={Colors.inputLabel}
               style={styles.inputStyles}
+              onChangeText={text => handleChange(text, 'email')}
             />
             <FontAwesome name="envelope" size={20} color={Colors.primary} />
           </View>
@@ -139,6 +243,7 @@ const Register = () => {
               placeholderTextColor={Colors.inputLabel}
               selectionColor={Colors.inputLabel}
               style={styles.inputStyles}
+              onChangeText={text => handleChange(text, 'password')}
             />
             <MaterialCommunityIcons
               name="lock"
@@ -157,7 +262,7 @@ const Register = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => navigation.navigate('HeightWeight')}>
+            onPress={() => onNextHandle()}>
             <View
               style={{
                 flexDirection: 'row',
@@ -191,7 +296,7 @@ const Register = () => {
           </Typography>
         </View>
       </View>
-      {alert && <Alert msg="Username already exists" color={Colors.red} />}
+      {alert && <Alert msg={err ? err : success} color={alertColor} />}
     </View>
   );
 };

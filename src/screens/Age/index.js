@@ -1,49 +1,95 @@
 import React, {useState, useRef} from 'react';
 import {View, TextInput, TouchableOpacity} from 'react-native';
 
-import DropDownPicker from 'react-native-dropdown-picker';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
+import Alert from '../../components/Alert';
+
 import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  dispatchAlert,
+  dispatchAlertClose,
+} from '../../redux/actions/alertActions';
+import {dispatchUserAge} from '../../redux/actions/authActions';
+const initialState = {
+  day: '',
+  month: '',
+  year: '',
+  err: '',
+  success: '',
+  alertColor: '',
+};
+
+import {isEmpty} from '../../utils/validation';
+
 const Age = () => {
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
 
-  const heightFocus = useRef(null);
-  const weightFocus = useRef(null);
+  // Error
+  const alert = useSelector(state => state.alertReducer.show);
 
-  const [open, setOpen] = useState(false);
-  const [openWeight, setOpenWeight] = useState(false);
+  const [user, setUser] = useState(initialState);
+  const {day, month, year, err, success, alertColor} = user;
 
-  const [value, setValue] = useState('cm');
-  const [valueWeight, setValueWeight] = useState('kg');
+  console.log(user);
 
-  const [items, setItems] = useState([
-    {label: 'cm', value: 'cm'},
-    {label: 'inch', value: 'inch'},
-  ]);
+  const dd = useRef(null);
+  const mm = useRef(null);
+  const yy = useRef(null);
 
-  const [itemsWeight, setItemsWeight] = useState([
-    {label: 'kg', value: 'kg'},
-    {label: 'pound', value: 'pound'},
-  ]);
-
-  const onHeightClick = () => {
-    heightFocus.current.focus();
+  const onddtClick = () => {
+    dd.current.focus();
+  };
+  const onmmtClick = () => {
+    mm.current.focus();
+  };
+  const onyytClick = () => {
+    yy.current.focus();
   };
 
-  const onWeightClick = () => {
-    heightFocus.current.focus();
+  const handleChange = (text, prop) => {
+    dispatch(dispatchAlertClose());
+    setUser({...user, [prop]: text, err: '', success: ''});
+  };
+
+  const onNextHandle = () => {
+    if (isEmpty(day) || isEmpty(month) || isEmpty(year)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Fill all the fields',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    if (day < 1 || day > 31 || month < 1 || month > 12 || year > 2005) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Invalid Date',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    // console.log({age: `${day}-${month}-${year}`});
+
+    dispatch(dispatchUserAge({age: `${day}-${month}-${year}`}));
+
+    navigation.navigate('Sex');
   };
 
   return (
@@ -71,13 +117,13 @@ const Age = () => {
         }}
       />
       <View style={styles.container}>
-        <Logo
-          src={Images.Logo}
-          width={70}
-          height={70}
-          mode={'contain'}
-          style={{marginTop: '1%'}}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="keyboard-backspace"
+            size={30}
+            color={Colors.primary}
+          />
+        </TouchableOpacity>
         <Typography
           size={35}
           color={Colors.primary}
@@ -86,7 +132,6 @@ const Age = () => {
           Age
         </Typography>
 
-        {/* Height */}
         <View style={{marginTop: 30, zIndex: 4}}>
           <Typography
             size={22}
@@ -96,9 +141,8 @@ const Age = () => {
             My age is
           </Typography>
           <View style={styles.sectionWrapper}>
-            <TouchableOpacity
-              style={styles.inputWrapper}
-              onPress={onHeightClick}>
+            {/* DD */}
+            <TouchableOpacity style={styles.inputWrapper} onPress={onddtClick}>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -109,12 +153,13 @@ const Age = () => {
                 placeholderTextColor={Colors.lightgrey}
                 selectionColor={Colors.primary}
                 style={styles.inputStyles}
-                ref={heightFocus}
+                ref={dd}
+                onChangeText={text => handleChange(text, 'day')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.inputWrapper}
-              onPress={onHeightClick}>
+
+            {/* MM */}
+            <TouchableOpacity style={styles.inputWrapper} onPress={onmmtClick}>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -125,15 +170,18 @@ const Age = () => {
                 placeholderTextColor={Colors.lightgrey}
                 selectionColor={Colors.primary}
                 style={styles.inputStyles}
-                ref={heightFocus}
+                ref={mm}
+                onChangeText={text => handleChange(text, 'month')}
               />
             </TouchableOpacity>
+
+            {/* YY */}
             <TouchableOpacity
               style={[
                 styles.inputWrapper,
                 {width: '40%', backgroundColor: Colors.primary},
               ]}
-              onPress={onHeightClick}>
+              onPress={onyytClick}>
               <TextInput
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -144,7 +192,8 @@ const Age = () => {
                 placeholderTextColor={Colors.lightgrey}
                 selectionColor={Colors.primary}
                 style={[styles.inputStyles, {color: Colors.white}]}
-                ref={heightFocus}
+                ref={yy}
+                onChangeText={text => handleChange(text, 'year')}
               />
             </TouchableOpacity>
           </View>
@@ -159,7 +208,8 @@ const Age = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => navigation.navigate('Sex')}>
+            // onPress={() => navigation.navigate('Sex')}
+            onPress={() => onNextHandle()}>
             <View
               style={{
                 flexDirection: 'row',
@@ -177,6 +227,7 @@ const Age = () => {
           </Button>
         </View>
       </View>
+      {alert && <Alert msg={err ? err : success} color={alertColor} />}
     </View>
   );
 };

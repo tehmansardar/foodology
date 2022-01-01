@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -7,14 +9,39 @@ import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
+import Alert from '../../components/Alert';
+
 import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useSelector, useDispatch} from 'react-redux';
+
+import {dispatchUserGender} from '../../redux/actions/authActions';
+
+const initialState = {
+  err: '',
+  success: '',
+  alertColor: '',
+};
+
 const Sex = () => {
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
 
+  const [user, setUser] = useState(initialState);
+  const {err, success, alertColor} = user;
+
   const [gender, setGender] = useState('male');
+
+  // Error
+  const alert = useSelector(state => state.alertReducer.show);
+
+  const onNextHandle = () => {
+    dispatch(dispatchUserGender(gender));
+    navigation.navigate('Ethnicity');
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -41,13 +68,13 @@ const Sex = () => {
         }}
       />
       <View style={styles.container}>
-        <Logo
-          src={Images.Logo}
-          width={70}
-          height={70}
-          mode={'contain'}
-          style={{marginTop: '1%'}}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="keyboard-backspace"
+            size={30}
+            color={Colors.primary}
+          />
+        </TouchableOpacity>
         <Typography
           size={35}
           color={Colors.primary}
@@ -97,8 +124,7 @@ const Sex = () => {
             <Typography
               size={20}
               color={gender === 'female' ? Colors.white : Colors.primary}
-              family={Fonts.NexaBold}
-              onPress={() => console.warn('Forogot')}>
+              family={Fonts.NexaBold}>
               Female
             </Typography>
           </Button>
@@ -114,7 +140,9 @@ const Sex = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => navigation.navigate('Ethnicity')}>
+            onPress={() => onNextHandle()}>
+            {/* onPress={() => navigation.navigate('Ethnicity')}> */}
+
             <View
               style={{
                 flexDirection: 'row',
@@ -132,6 +160,7 @@ const Sex = () => {
           </Button>
         </View>
       </View>
+      {alert && <Alert msg={err ? err : success} color={alertColor} />}
     </View>
   );
 };

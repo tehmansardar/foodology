@@ -103,12 +103,6 @@ const Register = () => {
       });
 
       if (res.data.msg) {
-        setUser({
-          ...user,
-          alertColor: Colors.primary,
-          err: '',
-          success: res.data.msg,
-        });
         dispatch(dispatchUsermailPass({username, email, password}));
         navigation.navigate('HeightWeight');
       } else {

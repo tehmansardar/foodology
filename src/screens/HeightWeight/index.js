@@ -3,21 +3,50 @@ import {View, TextInput, TouchableOpacity} from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import Feather from 'react-native-vector-icons/Feather';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
+import Alert from '../../components/Alert';
+
 import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useSelector, useDispatch} from 'react-redux';
+
+import {
+  dispatchAlert,
+  dispatchAlertClose,
+} from '../../redux/actions/alertActions';
+
+import {dispatchUserHeightWeight} from '../../redux/actions/authActions';
+
+import {isEmpty} from '../../utils/validation';
+
+const initialState = {
+  err: '',
+  success: '',
+  alertColor: '',
+};
+
 const HeightWeight = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const heightFocus = useRef(null);
-  const weightFocus = useRef(null);
+  const [user, setUser] = useState(initialState);
+
+  const {err, success, alertColor} = user;
+
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+
+  const heightFocus = useRef();
+  const weightFocus = useRef();
 
   const [open, setOpen] = useState(false);
   const [openWeight, setOpenWeight] = useState(false);
@@ -40,7 +69,41 @@ const HeightWeight = () => {
   };
 
   const onWeightClick = () => {
-    heightFocus.current.focus();
+    weightFocus.current.focus();
+  };
+
+  // Error
+  const alert = useSelector(state => state.alertReducer.show);
+
+  const onNextHandle = () => {
+    if (isEmpty(height)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Enter your height',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    if (isEmpty(weight)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Enter your weight',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+
+    dispatch(
+      dispatchUserHeightWeight({
+        height: height + value,
+        weight: weight + valueWeight,
+      }),
+    );
+
+    navigation.navigate('Age');
   };
 
   return (
@@ -68,13 +131,13 @@ const HeightWeight = () => {
         }}
       />
       <View style={styles.container}>
-        <Logo
-          src={Images.Logo}
-          width={70}
-          height={70}
-          mode={'contain'}
-          style={{marginTop: '1%'}}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="keyboard-backspace"
+            size={30}
+            color={Colors.primary}
+          />
+        </TouchableOpacity>
         <Typography
           size={35}
           color={Colors.primary}
@@ -105,6 +168,7 @@ const HeightWeight = () => {
                 selectionColor={Colors.primary}
                 style={styles.inputStyles}
                 ref={heightFocus}
+                onChangeText={text => setHeight(text)}
               />
             </TouchableOpacity>
             <View style={styles.pickerWrapper}>
@@ -115,7 +179,7 @@ const HeightWeight = () => {
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
-                onChangeValue={() => console.log(value)}
+                // onChangeValue={() => console.log(value)}
                 showTickIcon={false}
                 style={{
                   backgroundColor: Colors.primary,
@@ -152,7 +216,7 @@ const HeightWeight = () => {
             mb={15}
             color={Colors.lightgrey}
             family={Fonts.NexaBold}>
-            My weight is
+            My Weight is
           </Typography>
           <View style={styles.sectionWrapper}>
             <TouchableOpacity
@@ -166,7 +230,8 @@ const HeightWeight = () => {
                 underlineColorAndroid="transparent"
                 selectionColor={Colors.primary}
                 style={styles.inputStyles}
-                ref={heightFocus}
+                ref={weightFocus}
+                onChangeText={text => setWeight(text)}
               />
             </TouchableOpacity>
             <View style={styles.pickerWrapper}>
@@ -177,7 +242,7 @@ const HeightWeight = () => {
                 setOpen={setOpenWeight}
                 setValue={setValueWeight}
                 setItems={setItemsWeight}
-                onChangeValue={() => console.log(valueWeight)}
+                // onChangeValue={() => console.log(valueWeight)}
                 showTickIcon={false}
                 style={{
                   backgroundColor: Colors.primary,
@@ -216,7 +281,8 @@ const HeightWeight = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => navigation.navigate('Age')}>
+            // onPress={() => navigation.navigate('Age')}
+            onPress={() => onNextHandle()}>
             <View
               style={{
                 flexDirection: 'row',
@@ -234,6 +300,7 @@ const HeightWeight = () => {
           </Button>
         </View>
       </View>
+      {alert && <Alert msg={err ? err : success} color={alertColor} />}
     </View>
   );
 };

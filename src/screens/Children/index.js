@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import Feather from 'react-native-vector-icons/Feather';
 
 import {Fonts, Colors, Images} from '../../assets/Theme';
@@ -57,13 +59,15 @@ const Children = () => {
           }}
         />
         <View style={styles.container}>
-          <Logo
-            src={Images.Logo}
-            width={70}
-            height={70}
-            mode={'contain'}
-            style={{marginTop: '1%'}}
-          />
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={{marginTop: 30}}>
+            <MaterialIcons
+              name="keyboard-backspace"
+              size={30}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
           <Typography
             size={35}
             color={Colors.primary}

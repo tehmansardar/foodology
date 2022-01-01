@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 
-import {View} from 'react-native';
+import {View, TouchableOpacity} from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Feather from 'react-native-vector-icons/Feather';
 
@@ -10,21 +12,60 @@ import {Fonts, Colors, Images} from '../../assets/Theme';
 
 import {Logo, Button, Typography} from '../../components';
 
+import Alert from '../../components/Alert';
+
 import styles from './styles';
 
 import {useNavigation} from '@react-navigation/native';
 
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  dispatchAlert,
+  dispatchAlertClose,
+} from '../../redux/actions/alertActions';
+import {dispatchUserMaritalStatus} from '../../redux/actions/authActions';
+
+import {isEmpty} from '../../utils/validation';
+
+const initialState = {
+  err: '',
+  success: '',
+  alertColor: '',
+};
+
 const MaritalStatus = () => {
+  const dispatch = useDispatch();
+
   const navigation = useNavigation();
+
+  const [user, setUser] = useState(initialState);
+  const {err, success, alertColor} = user;
+
+  // Error
+  const alert = useSelector(state => state.alertReducer.show);
 
   const [open, setOpen] = useState(false);
 
   const [value, setValue] = useState('');
 
   const [items, setItems] = useState([
-    {label: 'Single', value: 'Single'},
-    {label: 'Married', value: 'Married'},
+    {label: 'Single', value: 'single'},
+    {label: 'Married', value: 'married'},
   ]);
+
+  const onNextHandle = () => {
+    if (isEmpty(value)) {
+      setUser({
+        ...user,
+        alertColor: Colors.red,
+        err: 'Select your marital status',
+        success: '',
+      });
+      return dispatch(dispatchAlert());
+    }
+    dispatch(dispatchUserMaritalStatus(value));
+    navigation.navigate('Children');
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -51,13 +92,14 @@ const MaritalStatus = () => {
         }}
       />
       <View style={styles.container}>
-        <Logo
-          src={Images.Logo}
-          width={70}
-          height={70}
-          mode={'contain'}
-          style={{marginTop: '1%'}}
-        />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="keyboard-backspace"
+            size={30}
+            color={Colors.primary}
+          />
+        </TouchableOpacity>
+
         <Typography
           size={35}
           color={Colors.primary}
@@ -85,7 +127,7 @@ const MaritalStatus = () => {
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
-                onChangeValue={() => console.log(value)}
+                // onChangeValue={() => console.log(value)}
                 showTickIcon={false}
                 style={{
                   backgroundColor: Colors.secondary,
@@ -124,7 +166,7 @@ const MaritalStatus = () => {
             h={50}
             radius={10}
             bg={Colors.primary}
-            onPress={() => navigation.navigate('Children')}>
+            onPress={() => onNextHandle()}>
             <View
               style={{
                 flexDirection: 'row',
@@ -142,6 +184,7 @@ const MaritalStatus = () => {
           </Button>
         </View>
       </View>
+      {alert && <Alert msg={err ? err : success} color={alertColor} />}
     </View>
   );
 };
